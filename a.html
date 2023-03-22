@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="900px" height="600px" style="border: solid brown" onclick="loop()"></canvas>
+<h1 id="s"></h1>
+<script>
+    class Rectangle {
+        x;
+        y;
+        height;
+        width;
+
+        constructor(x, y, width, height) {
+            this.x = Math.random() * x
+            this.y = Math.random() * y
+            this.width = Math.random() * width
+            this.height = Math.random() * height
+        }
+
+        randomColor() {
+            let red = Math.random() * 255
+            let green = Math.random() * 255
+            let blue = Math.random() * 255
+            return (`rgb(${red}, ${green} , ${blue})`)
+        }
+
+        draw() {
+            let ctx = document.getElementById('myCanvas').getContext('2d')
+            ctx.beginPath()
+            ctx.rect(this.x, this.y, this.width, this.height)
+            ctx.fillStyle = this.randomColor()
+            ctx.fill()
+            ctx.closePath()
+            let S = document.getElementById('s')
+            S.innerHTML = 'Diện tích là ' + this.width * this.height + ' Chu vi là ' + ((this.height + this.width) * 2)
+        }
+
+    }
+    function loop() {
+        let rectangle = new Rectangle(900, 600, 100, 200);
+        rectangle.draw()
+
+    }
+
+
+    // function loop() {
+    //     for (let i = 0; i < 150; i++) {
+    //         let rectangle = new Rectangle(900, 600, 100, 200);
+    //         rectangle.draw()
+    //     }
+    // }
+</script>
+</body>
+</html>
